@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('ticket_items', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('ticket_id')->constrained()->onDelete('cascade');
+            $table->string('name');
+            $table->decimal('price', 10, 2);
+            $table->decimal('quantity', 10, 2)->default(1);
+            $table->decimal('total', 10, 2);
+            $table->foreignId('product_id')->nullable()->constrained()->onDelete('set null');
+            $table->boolean('manually_verified')->default(false);
             $table->timestamps();
         });
     }
