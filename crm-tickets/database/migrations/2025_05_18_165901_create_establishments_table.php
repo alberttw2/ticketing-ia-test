@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('establishments', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->text('template_data')->nullable(); // JSON data for template learning
             $table->timestamps();
         });
     }
