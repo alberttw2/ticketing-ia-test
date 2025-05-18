@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamps();
             
             // Unique constraint to avoid duplicate mappings
-            $table->unique(['establishment_id', 'item_name', 'product_id']);
+            $table->unique(['establishment_id', 'item_name', 'product_id'], 'item_mapping_unique');
         });
     }
 
