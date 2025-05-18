@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('item_product_mappings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('establishment_id')->constrained()->onDelete('cascade');
+            $table->string('item_name');
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
+            $table->float('confidence')->default(1.0);
+            $table->boolean('manually_verified')->default(false);
             $table->timestamps();
+            
+            // Unique constraint to avoid duplicate mappings
+            $table->unique(['establishment_id', 'item_name', 'product_id']);
         });
     }
 
